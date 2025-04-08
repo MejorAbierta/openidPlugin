@@ -75,6 +75,10 @@ class OpenIDPlugin extends GenericPlugin
 			self::PROVIDER_APPLE => ["configUrl" => "https://appleid.apple.com/.well-known/openid-configuration"],
 			self::PROVIDER_URJC => ["configUrl" => "https://identifica.urjc.es/.well-known/openid-configuration"],
 		]);
+
+		// Load any custom providers from database
+		$this->loadCustomProviders();
+		
 	}
 
 	/**
@@ -427,7 +431,25 @@ class OpenIDPlugin extends GenericPlugin
 
 					return new JSONMessage(true);
 				}
+				break;
+			case 'addProvider':
+				if (!$request->checkCSRF()) {
+					return new JSONMessage(false, __('form.csrfInvalid'));
+				}
+				
+				$form = new OpenIDPluginSettingsForm($this);
+				$success = $form->addProvider(
+					$request->getUserVar('providerKey'),
+					$request->getUserVar('providerName'),
+					$request->getUserVar('configUrl')
+				);
+				
+				return new JSONMessage($success, $success ? 
+					__('plugins.generic.openid.settings.provider.added') : 
+					__('plugins.generic.openid.settings.provider.exists'));
+				break;
 		}
+
 
 		return parent::manage($args, $request);
 	}
@@ -483,5 +505,130 @@ class OpenIDPlugin extends GenericPlugin
 	{
 		return parent::getSetting(PKPApplication::CONTEXT_SITE, 'enabled');
 	}
+
+
+	/**
+	 * Add a new OpenID provider to the available providers list
+	 * 
+	 * @param string $providerKey A unique key for the provider (e.g., 'facebook', 'github')
+	 * @param array $providerConfig Configuration array for the provider
+	 * @param bool $save Whether to persist this change to the database
+	 * @return bool True on success, false on failure
+	 */
+	public function addProvider(string $providerKey, array $providerConfig, bool $save = true): bool
+	{
+		// Validate the provider key
+		if (empty($providerKey) || isset(self::$publicOpenidProviders[$providerKey])) {
+			return false;
+		}
+		
+		// Validate required config elements
+		if (empty($providerConfig['configUrl'])) {
+			return false;
+		}
+		
+		// Add the provider to the collection
+		self::$publicOpenidProviders->put($providerKey, $providerConfig);
+		
+		// Persist to database if requested
+		if ($save) {
+			return $this->saveProviders();
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Remove an OpenID provider from the available providers list
+	 * 
+	 * @param string $providerKey The key of the provider to remove
+	 * @param bool $save Whether to persist this change to the database
+	 * @return bool True on success, false on failure
+	 */
+	public function removeProvider(string $providerKey, bool $save = true): bool
+	{
+		// Can't remove built-in providers
+		$builtInProviders = [
+			self::PROVIDER_CUSTOM,
+			self::PROVIDER_ORCID,
+			self::PROVIDER_GOOGLE,
+			self::PROVIDER_MICROSOFT,
+			self::PROVIDER_APPLE,
+			self::PROVIDER_URJC
+		];
+		
+		if (in_array($providerKey, $builtInProviders)) {
+			return false;
+		}
+		
+		// Remove the provider
+		self::$publicOpenidProviders->forget($providerKey);
+		
+		// Persist to database if requested
+		if ($save) {
+			return $this->saveProviders();
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Save the current providers list to the database
+	 * 
+	 * @return bool True on success, false on failure
+	 */
+	protected function saveProviders()
+	{
+		$contextId = $this->getCurrentContextId();
+		$customProviders = [];
+		
+		// Get only custom providers (excluding built-in ones)
+		foreach (self::$publicOpenidProviders as $key => $config) {
+			$builtInProviders = [
+				self::PROVIDER_CUSTOM,
+				self::PROVIDER_ORCID,
+				self::PROVIDER_GOOGLE,
+				self::PROVIDER_MICROSOFT,
+				self::PROVIDER_APPLE,
+				self::PROVIDER_URJC
+			];
+			
+			if (!in_array($key, $builtInProviders)) {
+				$customProviders[$key] = $config;
+			}
+		}
+		
+		// Get existing settings
+		$settings = self::getOpenIDSettings($this, $contextId) ?? [];
+		
+		// Update providers in settings
+		$settings['customProviders'] = $customProviders;
+		
+		// Save back to database
+		return $this->updateSetting(
+			$contextId,
+			'openIDSettings',
+			json_encode($settings),
+			'string'
+		);
+	}
+
+	/**
+	 * Load custom providers from database
+	 */
+	public function loadCustomProviders(): void
+	{
+		$contextId = $this->getCurrentContextId();
+		$settings = self::getOpenIDSettings($this, $contextId);
+		
+		if (!empty($settings['customProviders'])) {
+			foreach ($settings['customProviders'] as $key => $config) {
+				if (!isset(self::$publicOpenidProviders[$key])) {
+					self::$publicOpenidProviders->put($key, $config);
+				}
+			}
+		}
+	}
+
 }
 

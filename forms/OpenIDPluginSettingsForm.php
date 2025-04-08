@@ -257,4 +257,39 @@ class OpenIDPluginSettingsForm extends Form
 
 		return json_decode($response->getBody()->getContents(), true);
 	}
+
+
+/**
+ * Add a new custom provider
+ */
+public function addProvider(string $providerKey, string $providerName, string $configUrl)
+{
+    $settings = json_decode($this->plugin->getSetting($this->contextId, 'openIDSettings'), true) ?? [];
+    
+    // Initialize custom providers array if not exists
+    if (!isset($settings['customProviders'])) {
+        $settings['customProviders'] = [];
+    }
+    
+    // Check if provider already exists
+    if (isset($settings['customProviders'][$providerKey])) {
+        return false;
+    }
+    
+    // Add the new provider
+    $settings['customProviders'][$providerKey] = [
+        'configUrl' => $configUrl,
+        'displayName' => $providerName,
+        'active' => false // Default to inactive
+    ];
+    $request = Application::get()->getRequest();
+	$contextId = OpenIDPlugin::getContextData($request)->getId();
+    // Save the settings
+    return $this->plugin->updateSetting(
+        $contextId,
+        'openIDSettings',
+        json_encode($settings),
+        'string'
+    );
+}
 }
