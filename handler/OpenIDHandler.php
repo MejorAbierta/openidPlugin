@@ -337,7 +337,7 @@ class OpenIDHandler extends Handler
 		$publicKeys = [];
 		$beginCert = '-----BEGIN CERTIFICATE-----';
 		$endCert = '-----END CERTIFICATE----- ';
-
+		
 		try {
 			$response = $httpClient->request('GET', $providerSettings['certUrl']);
 			if ($response->getStatusCode() != 200) {
@@ -431,7 +431,19 @@ class OpenIDHandler extends Handler
 			}
 
 			$userInfo = json_decode($response->getBody()->getContents(), true);
+			if($userInfo==null){
+				try {
+					$publicKey = $this->getOpenIDAuthenticationCert($providerSettings);
+					// Decode the JWT (without verification)
+					
+					$claims = $this->getClaimsFromJwt([$response->getBody()], $publicKey);
+					
+					return $claims;
+				} catch (Exception $e) {
+					error_log("Error decoding JWT: " . $e->getMessage());
+				}
 
+			}
 			$claims = new UserClaims();
 			$claims->setValues($userInfo);
 

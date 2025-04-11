@@ -60,7 +60,8 @@ $(function() {ldelim}
 		 $('#newProviderKey').val('');
 		 $('#newProviderName').val('');
 		 $('#newProviderConfigUrl').val('');
-		 $('#addProviderModal').pkpModal('show');
+		 
+		 document.querySelector('# ').querySelector('.hiddenContent').style.display = 'block';
 	 {rdelim});
 
 	 // Handle cancel button
@@ -138,7 +139,28 @@ $(function() {ldelim}
 	 {translate key="plugins.generic.openid.settings.addProvider"}
  </button>
 </div>
-
+<!-- Add Provider Modal -->
+<div id="addProviderModal" class="pkp_modal ">
+ <div class="pkp_modal_panel hiddenContent">
+	 <div class="header">
+	 hola sbenja
+		 <h4>{translate key="plugins.generic.openid.settings.addProvider.title"}</h4>
+	 </div>
+	 <div class="content">
+		 <div class="pkp_form">
+			 {fbvFormSection}
+				 {fbvElement type="text" id="newProviderKey" label="plugins.generic.openid.settings.provider.key" required=true}
+				 {fbvElement type="text" id="newProviderName" label="plugins.generic.openid.settings.provider.name" required=true multilingual=true}
+				 {fbvElement type="text" id="newProviderConfigUrl" label="plugins.generic.openid.settings.configUrl.desc" required=true}
+			 {/fbvFormSection}
+		 </div>
+	 </div>
+	 <div class="footer">
+		 <button class="pkp_button" id="cancelAddProvider">{translate key="common.cancel"}</button>
+		 <button class="pkp_button pkp_button_primary" id="confirmAddProvider">{translate key="common.save"}</button>
+	 </div>
+ </div>
+</div>
 <form
  class="pkp_form"
  id="openIDSettings"
@@ -264,28 +286,7 @@ $(function() {ldelim}
  {fbvFormButtons}
 </form>
 
-<!-- Add Provider Modal -->
-<div id="addProviderModal" class="pkp_modal is_visible">
- <div class="pkp_modal_panel">
-	 <div class="header">
-	 hola sbenja
-		 <h4>{translate key="plugins.generic.openid.settings.addProvider.title"}</h4>
-	 </div>
-	 <div class="content">
-		 <div class="pkp_form">
-			 {fbvFormSection}
-				 {fbvElement type="text" id="newProviderKey" label="plugins.generic.openid.settings.provider.key" required=true}
-				 {fbvElement type="text" id="newProviderName" label="plugins.generic.openid.settings.provider.name" required=true multilingual=true}
-				 {fbvElement type="text" id="newProviderConfigUrl" label="plugins.generic.openid.settings.configUrl.desc" required=true}
-			 {/fbvFormSection}
-		 </div>
-	 </div>
-	 <div class="footer">
-		 <button class="pkp_button" id="cancelAddProvider">{translate key="common.cancel"}</button>
-		 <button class="pkp_button pkp_button_primary" id="confirmAddProvider">{translate key="common.save"}</button>
-	 </div>
- </div>
-</div>
+
 
 <!-- Delete Provider Confirmation Modal -->
 <div id="deleteProviderModal" class="pkp_modal" style="display: none;">
