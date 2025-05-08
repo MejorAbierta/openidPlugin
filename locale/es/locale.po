@@ -367,6 +367,9 @@ msgstr "Iniciar sesión con Apple"
 msgid "plugins.generic.openid.select.provider.legacyRegister"
 msgstr "Registrar cuenta (sin Oauth)"
 
+msgid "plugins.generic.openid.select.provider.rediris"
+msgstr "Iniciar sesión con RedIris"
+
 msgid "plugins.generic.openid.disables.fields.info.orcid"
 msgstr "Su cuenta ORCID autenticada proporciona automáticamente el ORCID."
 

@@ -274,6 +274,9 @@ msgstr "Sign in with Apple"
 msgid "plugins.generic.openid.select.provider.legacyRegister"
 msgstr "Register Account (without Oauth)"
 
+msgid "plugins.generic.openid.select.provider.rediris"
+msgstr "Sign in with RedIris"
+
 # disabled fields info
 msgid "plugins.generic.openid.disables.fields.info"
 msgstr "Some information is provided by an authenticated account used to login and cannot be edited.<br /> The data will be synced whenever you log out and login again."

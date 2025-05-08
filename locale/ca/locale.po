@@ -233,3 +233,35 @@ msgstr ""
 # general messages
 msgid "plugins.generic.openid.name"
 msgstr "Mòdul d'autenticació OpenID"
+
+#provider page
+msgid "plugins.generic.openid.select.provider"
+msgstr "Inicieu sessió o registreu-vos"
+
+msgid "plugins.generic.openid.select.legacy"
+msgstr "Inicieu la sessió amb el vostre compte a {$journalName}"
+
+msgid "plugins.generic.openid.select.provider.help"
+msgstr "Inicieu la sessió o registreu-vos amb:"
+
+msgid "plugins.generic.openid.select.provider.custom"
+msgstr "Inicieu la sessió amb un proveïdor personalitzat"
+
+msgid "plugins.generic.openid.select.provider.orcid"
+msgstr "Inicia sessió amb Orcid"
+
+msgid "plugins.generic.openid.select.provider.google"
+msgstr "Inicia sessió amb Google"
+
+msgid "plugins.generic.openid.select.provider.microsoft"
+msgstr "Inicia sessió amb Microsoft"
+
+msgid "plugins.generic.openid.select.provider.apple"
+msgstr "Inicia sessió amb Apple"
+
+msgid "plugins.generic.openid.select.provider.legacyRegister"
+msgstr "Registra el compte (sense Oauth)"
+
+msgid "plugins.generic.openid.select.provider.rediris"
+msgstr "Inicia sessió amb RedIris"
+

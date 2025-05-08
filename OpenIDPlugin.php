@@ -44,6 +44,7 @@ class OpenIDPlugin extends GenericPlugin
 	public const PROVIDER_GOOGLE = 'google';
 	public const PROVIDER_MICROSOFT = 'microsoft';
 	public const PROVIDER_APPLE = 'apple';
+	public const PROVIDER_REDIRIS = 'rediris';
 
 	// SSOErrors
 	public const SSO_ERROR_CONNECT_DATA = 'connect_data';
@@ -72,6 +73,7 @@ class OpenIDPlugin extends GenericPlugin
 			self::PROVIDER_GOOGLE => ["configUrl" => "https://accounts.google.com/.well-known/openid-configuration"],
 			self::PROVIDER_MICROSOFT => ["configUrl" => "https://login.windows.net/{audience}/v2.0/.well-known/openid-configuration"],
 			self::PROVIDER_APPLE => ["configUrl" => "https://appleid.apple.com/.well-known/openid-configuration"],
+			self::PROVIDER_REDIRIS => ["configUrl" => "https://oidc.sir2.rediris.es/es.rediris.sir2.test/module.php/oidc/openid-configuration.php"],
 		]);
 	}
 
