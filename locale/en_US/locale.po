@@ -253,6 +253,12 @@ msgstr "Sign in or register"
 msgid "plugins.generic.openid.select.legacy"
 msgstr "Sign in with your account at {$journalName}"
 
+msgid "plugins.generic.openid.select.provider.login"
+msgstr "Sign in with "
+
+msgid "plugins.generic.openid.select.provider.add"
+msgstr "Add new custom provider"
+
 msgid "plugins.generic.openid.select.provider.help"
 msgstr "Sign in or register with:"
 

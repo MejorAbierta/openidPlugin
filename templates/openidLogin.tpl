@@ -1,25 +1,14 @@
-{*
+{**
  * templates/openidLogin.tpl
  *
- * This file is part of OpenID Authentication Plugin (https://github.com/leibniz-psychology/pkp-openid).
- *
- * OpenID Authentication Plugin is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * OpenID Authentication Plugin is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with OpenID Authentication Plugin.  If not, see <https://www.gnu.org/licenses/>.
- *
  * Copyright (c) 2020 Leibniz Institute for Psychology Information (https://leibniz-psychology.org/)
+ * Copyright (c) 2024 Simon Fraser University
+ * Copyright (c) 2024 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
  *
  * Display the OpenID sign in page
  *}
+
 {include file="frontend/components/header.tpl" pageTitle='plugins.generic.openid.select.provider'}
 <div class="page page_openid_login">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey='plugins.generic.openid.select.provider'}
@@ -46,7 +35,7 @@
 	{/if}
 	<ul id="openid-provider-list">
 		{if $legacyLogin}
-			<li class="margin-top-30"><strong>{translate key='plugins.generic.openid.select.legacy' journalName=$journalName|escape}</strong></li>
+			<li class="margin-top-30"><strong>{translate key='plugins.generic.openid.select.legacy' journalName=$siteTitle|escape}</strong></li>
 			<li class="page_login">
 				<form class="cmp_form cmp_form login" id="login" method="post" action="{$loginUrl}">
 					{csrf}
@@ -100,19 +89,19 @@
 		{if $linkList}
 			<li class="margin-top-30"><strong>{translate key='plugins.generic.openid.select.provider.help'}</strong></li>
 			{foreach from=$linkList key=name item=url}
-				{if $name == 'custom'}
+				{if $name|strstr:'custom' !== false}
 					<li><a id="openid-provider-{$name}" href="{$url}">
 							<div>
-								{if $customBtnImg}
-									<img src="{$customBtnImg}" alt="{$name}">
+								{if $customBtnImg[$name]}
+									<img src="{$customBtnImg[$name]}" alt="{$name}">
 								{else}
-									<img src="{$openIDImageURL}{$name}-sign-in.png" alt="{$name}">
+									<img src="{$openIDImageURL}custom-sign-in.png" alt="{$name}">
 								{/if}
 								<span>
-								{if isset($customBtnTxt)}
-									{$customBtnTxt}
+								{if $customBtnTxt[$name]}
+									{$customBtnTxt[$name]}
 								{else}
-									{{translate key="plugins.generic.openid.select.provider.$name"}}
+									{{translate key="plugins.generic.openid.select.provider.login"}}{{$name|capitalize:true}}
 								{/if}
 							</span>
 							</div>
@@ -122,7 +111,7 @@
 					<li class=""><a id="openid-provider-{$name}" href="{$url}">
 							<div>
 								<img src="{$openIDImageURL}{$name}-sign-in.png" alt="{$name}"/>
-								<span>{{translate key="plugins.generic.openid.select.provider.$name"}}</span>
+								<span>{{translate key="plugins.generic.openid.select.provider.login"}}{{$name|capitalize:true}}</span>
 							</div>
 						</a>
 					</li>
