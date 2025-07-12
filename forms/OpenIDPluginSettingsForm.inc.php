@@ -22,7 +22,7 @@ class OpenIDPluginSettingsForm extends Form
 {
 	private const HIDDEN_CHARS = '******';
 
-	private OpenIDPlugin $plugin;
+	private $plugin;
 
 	/**
 	 * OpenIDPluginSettingsForm constructor.
@@ -170,8 +170,10 @@ class OpenIDPluginSettingsForm extends Form
 						error_log("error on openidproviders.json malformed JSON");
 						return;
 					}
-					$openidproviders = array_map(fn($item) => new OpenIDProvider($item["name"], $item["configUrl"]), $data);
-					array_push($openidproviders, new OpenIDProvider($name, $configUrl));
+				$openidproviders = array_map(function($item) {
+					return new OpenIDProvider($item["name"], $item["configUrl"]);
+				}, $data);
+				array_push($openidproviders, new OpenIDProvider($name, $configUrl));
 				} else {
 					$openidproviders = [new OpenIDProvider($name, $configUrl)];
 				}

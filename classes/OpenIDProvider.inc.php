@@ -1,13 +1,14 @@
 <?php
 
 
-class OpenIDProvider
-{
-    public function __construct(
-        public string $name,
-        public string $configUrl,
-        ) 
-    {}
+class OpenIDProvider {
+    private $name;
+    private $configUrl;
+
+    public function __construct($name, $configUrl) {
+        $this->name = $name;
+        $this->configUrl = $configUrl;
+    }
 
     public function toJson(): string {
         return json_encode(get_object_vars($this));

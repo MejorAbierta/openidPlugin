@@ -47,7 +47,7 @@ class OpenIDPlugin extends GenericPlugin
 	/**
 	 * List of OpenID provider.
 	 */
-	public static Collection $publicOpenidProviders;
+	public static $publicOpenidProviders;
 
 	public const ID_TOKEN_NAME = 'id_token';
 
@@ -75,12 +75,14 @@ class OpenIDPlugin extends GenericPlugin
 			return;
 		}
 
-		$openidproviders = array_map(fn($item) => new OpenIDProvider($item["name"],$item["configUrl"]), $data);
+		$openidproviders = array_map(function($item) {
+			return new OpenIDProvider($item["name"], $item["configUrl"]);
+		}, $data);
 
 		foreach ($openidproviders as $provider) {
 			if (!self::$publicOpenidProviders->has($provider->name)) {
 				self::$publicOpenidProviders->put(
-					$provider->name , ["configUrl" => $provider->configUrl]
+					$provider->name, ["configUrl" => $provider->configUrl]
 				);
 			}
 		}

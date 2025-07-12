@@ -20,10 +20,10 @@ use Illuminate\Support\Collection;
 class OpenIDLoginHandler extends Handler
 {
 
-	public static Collection $customBtnImg;
-	public static Collection $customBtnTxt;
+	public static $customBtnImg;
+	public static $customBtnTxt;
 
-	protected OpenIDPlugin $plugin;
+	protected $plugin;
 
 	public function __construct()
 	{
