@@ -1,9 +1,11 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-26 10:58+0000\n"
-"Last-Translator: Marc Bria <marc.bria@gmail.com>\n"
-"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/plugins/openid/"
-"es_ES/>\n"
+"Project-ID-Version: OpenID Authentication Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-26 09:30+0000\n"
+"PO-Revision-Date: 2021-04-26 09:30+0000\n"
+"Last-Translator: Primož Svetek <primoz.svetek@gmail.com>\n"
+"Language-Team: Spanish (Spain) <http://translate.pkp.sfu.ca/projects/plugins/openid/es_ES/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,66 +13,279 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.generic.openid.form.error.email.required"
-msgstr "Se requiere un correo electrónico."
+# general messages
+msgid "plugins.generic.openid.name"
+msgstr "Complemento de Autenticación OpenID"
 
-msgid "plugins.generic.openid.form.error.affiliation.required"
-msgstr "Se requiere una afiliación."
+msgid "plugins.generic.openid.description"
+msgstr "Este complemento permite a los usuarios registrarse e iniciar sesión con proveedores de Open WestbrookID como Keycloak."
 
-msgid "plugins.generic.openid.form.error.country.required"
-msgstr "Se requiere un país."
-
-msgid "plugins.generic.openid.form.error.familyName.required"
-msgstr "Se requiere un apellido."
-
-msgid "plugins.generic.openid.form.error.givenName.required"
-msgstr "Se requiere un nombre de pila."
-
-msgid "plugins.generic.openid.form.error.usernameExists"
-msgstr "El nombre de usuario que has proporcionado ya existe."
-
-#step 2 form error messages
-msgid "plugins.generic.openid.form.error.username.required"
-msgstr "Se requiere un nombre de usuario/a."
-
-msgid "plugins.generic.openid.step2.connect.btn"
-msgstr "Iniciar sesión y conectar cuentas"
-
-msgid "plugins.generic.openid.step2.connect.username"
-msgstr "Nombre de usuario/a o correo electrónico"
-
-msgid "plugins.generic.openid.step2.connect"
-msgstr ""
-"Por favor, accede a tu cuenta en {$journalName}.<br />Tu información se "
-"actualizará automáticamente."
-
-msgid "plugins.generic.openid.step2.complete.btn"
-msgstr "Registro completado"
-
-msgid "plugins.generic.openid.step2.complete"
-msgstr "Por favor, verifica tus datos y añade cualquier información que falte"
-
-msgid "plugins.generic.openid.step2.choice.yes"
-msgstr "Sí, ya tengo una cuenta."
-
-msgid "plugins.generic.openid.step2.choice.no"
-msgstr "No, soy nuevo/a en {$journalName}."
-
-msgid "plugins.generic.openid.step2.help"
-msgstr "Se requiere información adicional para registrarse:"
+# step2 messages
+msgid "plugins.generic.openid.step2.title"
+msgstr "Completar el registro"
 
 msgid "plugins.generic.openid.step2.headline"
 msgstr "¿Ya tienes una cuenta en {$journalName}?"
 
-# step2 messages
-msgid "plugins.generic.openid.step2.title"
-msgstr "Registro completado"
+msgid "plugins.generic.openid.step2.help"
+msgstr "Se requiere información adicional процес для registrarse:"
 
-msgid "plugins.generic.openid.description"
-msgstr ""
-"Este plugin permite a los usuarios/as registrarse e iniciar sesión con un "
-"proveedor de OpenID como Keycloak."
+msgid "plugins.generic.openid.step2.choice.no"
+msgstr "No, soy nuevo en {$journalName}."
 
-# general messages
-msgid "plugins.generic.openid.name"
-msgstr "Módulo de autenticación OpenID"
+msgid "plugins.generic.openid.step2.choice.yes"
+msgstr "Sí, ya tengo una cuenta."
+
+msgid "plugins.generic.openid.step2.complete"
+msgstr "Por favor, verifica tus datos y añade cualquier información que falte"
+
+msgid "plugins.generic.openid.step2.complete.btn"
+msgstr "Completar el registro"
+
+msgid "plugins.generic.openid.step2.connect"
+msgstr "Por favor, inicia sesión en tu cuenta en {$journalName}.<br />Tu información se actualizará automáticamente."
+
+msgid "plugins.generic.openid.step2.connect.username"
+msgstr "Nombre de usuario o correo electrónico"
+
+msgid пад "plugins.generic.openid.step2.connect.btn"
+msgstr "Iniciar sesión y conectar cuentas"
+
+# step 2 form error messages
+msgid "plugins.generic.openid.form.error.username.required"
+msgstr "Es necesario un nombre de usuario."
+
+msgid "plugins.generic.openid.form.error.usernameExists"
+msgstr "El nombre de usuario proporcionado ya existe."
+
+msgid "plugins.generic.openid.form.error.givenName.required"
+msgstr "Es necesario un nombre."
+
+msgid "plugins.generic.openid.form.error.familyName.required"
+msgstr "Es necesario un apellido."
+
+msgid "plugins.generic.openid.form.error.country.required"
+msgstr "Es necesario un país."
+
+msgid "plugins.generic.openid.form.error.affiliation.required"
+msgstr "Es necesaria una afiliación."
+
+msgid "plugins.generic.openid.form.error.email.required"
+msgstr "Es necesario un correo electrónico."
+
+msgid "plugins.generic.openid.form.error.emailExists"
+msgstr "La dirección de correo electrónico proporcionada ya existe. Por favor, intenta iniciar sesión en la cuenta existente."
+
+msgid "plugins.generic.openid.form.error.privacyConsent.required"
+msgstr "Debes aceptar los términos de la declaración de privacidad."
+
+msgid "plugins.generic.openid.form.error.usernameOrEmail.required"
+msgstr "Es necesario un nombre de usuario o correo electrónico."
+
+msgid "plugins.generic.openid.form.error.password.required"
+msgstr "Es necesaria una contraseña."
+
+msgid "plugins.generic.openid.form.error.user.not.found"
+msgstr "No se encontró ningún usuario que coincida con tus credenciales."
+
+msgid "plugins.generic.openid.formස "form.error.invalid.credentials"
+msgstr "La contraseña es incorrecta."
+
+msgid "plugins.generic.openid.settings.error"
+msgstr "<strong>¡Configuración incorrecta del complemento OpenID!</strong><br />No hay ningún proveedor de OpenID configurado.<br />Por favor, informa de esto al soporte técnico."
+
+# settings messages
+msgid "plugins.generic.openid.settings.openid.head"
+msgstr "Proveedor de OpenID:"
+
+msgid "plugins.generic.openid.settings.openid.desc"
+msgstr "Por favor, introduce la siguiente información según tu proveedor de OpenID."
+
+msgid "plugins.generic.openid.settings.custom.enable"
+msgstr "Proveedor de OpenID personalizado"
+
+msgid "plugins.generic.openid.settings.custom.desc"
+msgstr "Si deseas utilizar un proveedor de OpenID Connect personalizado (por ejemplo, un servidor Keycloak autohospedado), debes proporcionar la URL del punto final de configuración de OpenID y las credenciales del cliente."
+
+msgid "plugins.generic.openid.settings.btn.settings"
+msgstr "Configuración del botón de inicio de sesión personalizado"
+
+msgid "plugins.generic.openid.settings.provider.settings"
+msgstr "Credenciales de inicio de sesión"
+
+msgid "plugins.generic.openid.settings.btnImg.desc"
+msgstr "Por favor, introduce una URL a una imagen (46x41) que se mostrará en el botón de inicio de sesión. Si no se proporciona ninguna imagen, se mostrará el logotipo de OpenID."
+
+msgid "plugins.generic.openid.settings.btnTxt.desc"
+msgstr "Por favor, introduce la etiqueta del botón de inicio de sesión."
+
+msgid "plugins.generic.openid.settings.orcid.enable"
+msgstr "OpenID Connect de ORCID"
+
+msgid "plugins.generic.openid.settings.orcid.desc"
+msgstr "Por favor, utiliza esta URL de redirección (consulta el <a href='https://github.com/ORCID/ORCID-Source/blob/master/orcid-web/ORCID_AUTH_WITH_OPENID_CONNECT.md' target='_blank' rel='noopener'>tutorial</a>):"
+
+msgid "plugins.generic.openid.settings.google.enable"
+msgstr "OpenID Connect de Google"
+
+msgid "plugins.generic.openid.settings.google.desc"
+msgstr "Debes crear un cliente de OpenID Connect en la <a href='https://console.developers.google.com/apis/credentials' target='_blank' rel='noopener'>Consola de Desarrolladores de Google</a> para usar Google como proveedor de OpenID Connect. Consulta este <a href='https://developers.google.com/identity/protocols/oauth2/openid-connect' target='_blank' rel='noopener'>tutorial</a>. Por favor, utiliza esta URL de redirección:"
+
+msgid "plugins.generic.openid.settings.microsoft.enable"
+msgstr "Microsoft Azure Active Directory"
+
+msgid "plugins.generic.openid.settings.microsoft.desc"
+msgstr "Debes configurar tu servicio de aplicación en el <a href='https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview' target='_blank' rel='noopener'>portal de Azure</a> (ve a 'Registros de aplicaciones' después de iniciar sesión) para usar el inicio de sesión con Azure AD. Consulta este <a href='https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad' target='_blank' rel='noopener'>tutorial</a>. Por favor, utiliza esta URL de redirección:"
+
+msgid "plugins.generic.openid.settings.apple.enable"
+msgstr "ID de Apple"
+
+msgid "plugins.generic.openid.settings.apple.desc"
+msgstr "Consulta este <a href='https://developer.apple.com/documentation/authenticationservices' target='_blank' rel='noopener'>tutorial</a> sobre cómo configurar el ID de Apple. Por favor, utiliza esta URL de redirección:"
+
+msgid "plugins.generic.openid.settings.configUrl"
+msgstr "URL del proveedor de OpenID"
+
+msgid "plugins.generic.openid.settings.configUrl.desc"
+msgstr "Por favor, introduce la URL de configuración de tu proveedor de OpenID.<strong>La URL debe terminar con \".well-known/openid-configuration\" (por ejemplo, \"https://sso.example.com/auth/realms/master/.well-known/openid-configuration\").</strong>"
+
+msgid "plugins.generic.openid.settings.clientId"
+msgstr "Identificador de cliente"
+
+msgid "plugins.generic.openid.settings.clientId.desc"
+msgstr "Por favor, introduce tu identificador de cliente."
+
+msgid "plugins.generic.openid.settings.clientSecret"
+msgstr "Secreto de cliente"
+
+msgid "plugins.genericទ "plugins.generic.open acho "plugins.generic.openid.settings.clientSecret.desc"
+msgstr "Por favor, introduce tu secreto de cliente."
+
+msgid "plugins.generic.openid.settings.features.head"
+msgstr "Funciones avanzadas del complemento"
+
+msgid "plugins.generic.openid.settings.features.desc"
+msgstr "Los siguientes campos son opcionales. No son necesarios para conectar con un proveedor de OpenID."
+
+msgid "plugins.generic.openid.settings.legacyLogin"
+msgstr "Inicio de sesión heredado"
+
+msgid "plugins.generic.openid.settings.legacyLogin.check"
+msgstr "Habilitar inicio de sesión heredado"
+
+msgid "plugins.generic.openid.settings.legacyLogin.desc"
+msgstr "Habilita esta opción si deseas que los usuarios puedan iniciar sesión con el formulario de inicio de sesión de la aplicación además del inicio de sesión con OpenID."
+
+msgid "plugins.generic.openid.settings.legacyRegister.check"
+msgstr "Habilitar registro heredado"
+
+msgid "plugins.generic.openid.settings.legacyRegister.desc"
+msgstr "Habilita esta opción si deseas que los usuarios puedan registrarse con el formulario de registro de la aplicación además del inicio de sesión con OpenID."
+
+msgid "plugins.generic.openid.settings.step2.connect"
+msgstr "Conexión de cuentas"
+
+msgid "plugins.generic.openid.settings.step2.connect.check"
+msgstr "Deshabilitar \"Conexión de cuentas\""
+
+msgid "plugins.generic.openid.settings.step2.connect.desc"
+msgstr "Si esta revista es nueva y no tiene cuentas de usuario existentes, puedes marcar esta casilla para deshabilitar la función de conexión de cuentas. En este caso, el usuario solo se le pedirá los detalles adicionales requeridos por esta aplicación al registrar una cuenta a través de un proveedor de OpenID."
+
+msgid "plugins.generic.openid.settings.hashSecret"
+msgstr "Secreto de cifrado/descifrado"
+
+msgid "plugins.generic.openid.settings.hashSecret.desc"
+msgstr "Si deseas cifrar la información de OpenID, como el identificador de OpenID, en el código HTML y deseas usar la siguiente función para la generación automática de claves API, debes introducir un secreto aquí. Para que sea suficientementeemente seguro, la clave secreta debe tener al menos 24 caracteres."
+
+msgid "plugins.generic.openid.settings.generateAPIKey"
+msgstr "Clave API automática"
+
+msgid "plugins.generic.openid.settings.generateAPIKey.check"
+msgstr "Habilitar la generación automática de claves API"
+
+msgid "plugins.generic.openid.settings.generateAPIKey.desc"
+msgstr "Este complemento puede generar una clave cifrando el identificador de OpenID con <strong>el secreto introducido anteriormente</strong>. Esta clave será cifrada nuevamente con un secreto que debe especificarse en la configuración de la aplicación. Esto debería ser suficientemente seguro."
+
+msgid "plugins.generic.openid.settings.features.enable.provider.sync"
+msgstr "Habilitar la sincronización de datos de usuario del proveedor de OpenID"
+
+msgid "plugins.generic.openid.settings.features.enable.provider.sync.desc"
+msgstr "Alguna información del usuario, como el nombre, el apellido y la dirección de correo electrónico, se transfiere desde el proveedor de OpenID a esta aplicación. Habilita esta opción para guardar automáticamente esta información en la cuenta del usuario. (recomendado)"
+
+msgid "plugins.generic.openid.settings.features.disable.fields.desc"
+msgstr "Evitar que los siguientes campos sean modificados dentro de esta aplicación:"
+
+msgid "plugins.generic.openid.settings.features.disable.given"
+msgstr "<strong>Nombre</strong> de solo lectura"
+
+msgid "plugins.generic.openid.settings.features.disable.family"
+msgstr "<strong>Apellido</strong> de solo lectura"
+
+msgid "plugins.generic.openid.settings.features.disable.email"
+msgstr "<strong>Correo electrónico</strong> de solo lectura"
+
+# error messages
+msgid "plugins.generic.openid.error.openid.connect.desc.key"
+msgstr "<strong>Se produjo un error al verificar tus datos.</strong><br />El servicio puede no estar disponible en este momento.<br />Por favor, intenta de nuevo más tarde y <a href='mailto:{$supportEmail}'>contacta con el soporte técnico</a> si el problema persiste."
+
+msgid "plugins.generic.openid.error.openid.connect.desc.data"
+msgstr "<strong>Se produjo un error al recibir tus datos del proveedor de OpenID.</strong><br />El servicio puede no estar disponible en este momento.<br />Por favor, intenta de nuevo más tarde y <a href='mailto:{$supportEmail}'>contacta con el soporte técnico</a> si el problema persiste."
+
+msgid "plugins.generic.openid.error.openid.cert.desc"
+msgstr "<strong>Se produjo un error al validar y extraer tus datos.</strong><br />El servicio puede no estar disponible en este momento.<br />Por favor, intenta de nuevo más tarde y <a href='mailto:{$supportEmail}'>contacta con el soporte técnico</a> si el problema persiste."
+
+msgid "plugins.generic.openid.error.openid.disabled.without"
+msgstr "<strong>Esta cuenta está desactivada sin ninguna razón específica.</strong><br />Por favor, <a href='mailto:{$supportEmail}'>contacta con el soporte técnico</a> para activar esta cuenta."
+
+msgid "plugins.generic.openid.error.openid.disabled.with"
+msgstr "<strong>Esta cuenta está desactivada por la siguiente razón:</strong>"
+
+msgid "plugins.generic.openid.error.legacy.link"
+msgstr "Los administradores y el personal de soporte pueden iniciar，如果你 iniciar sesión a través de este <a href=\"{$legacyLoginUrl}\">enlace</a> para resolver este problema."
+
+# provider page
+msgid "plugins.generic.openid.select.provider"
+msgstr "Iniciar sesión o registrarse"
+
+msgid "plugins.generic.openid.select.legacy"
+msgstr "Iniciar sesión con tu cuenta en {$journalName}"
+
+msgid "plugins.generic.openid.select.provider.login"
+msgstr "Iniciar sesión con "
+
+msgid "plugins.generic.openid.select.provider.add"
+msgstr "Añadir nuevo proveedor personalizado"
+
+msgid "plugins.generic.openid.select.provider.help"
+msgstr "Iniciar sesión o registrarse con:"
+
+msgid "plugins.generic.openid.select.provider.custom"
+msgstr "Iniciar sesión con proveedor personalizado"
+
+msgid "plugins.generic.openid.select.provider.orcid"
+msgstr "Iniciar sesión con ORCID"
+
+msgid "plugins.generic.openid.select.provider.google"
+msgstr "Iniciar sesión con Google"
+
+msgid "plugins.generic.openid.select.provider.microsoft"
+msgstr "Iniciar sesión con Microsoft"
+
+msgid "plugins.generic.openid.select.provider.apple"
+msgstr "Iniciar sesión con Apple"
+
+msgid "plugins.generic.openid.select.provider.legacyRegister"
+msgstr "Registrar cuenta (sin OAuth)"
+
+# disabled fields info
+msgid "plugins.generic.openid.disables.fields.info"
+msgstr "Alguna información es proporcionada por una cuenta autenticada utilizada para iniciar sesión y no se puede editar.<br /> Los datos se sincronizarán cada vez que cierres sesión e inicies sesión nuevamente."
+
+msgid "plugins.generic.openid.disables.fields.info.orcid"
+msgstr "El ORCID es proporcionado automáticamente por tu cuenta autenticada de ORCID."
+
+msgid "plugins.generic.openid.disables.fields.info.api"
+msgstr "La clave API es generada automáticamente por un complemento."
+
+msgid "plugins.generic.openid.disables.fields.info.password"
+msgstr "Estás utilizando un proveedor de autenticación de inicio de sesión único, por lo que debes cambiar tu contraseña en la página de la cuenta del proveedor."
