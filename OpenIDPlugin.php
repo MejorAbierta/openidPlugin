@@ -82,16 +82,18 @@ class OpenIDPlugin extends GenericPlugin
 		$request = Application::get()->getRequest();
 		$contextId = OpenIDPlugin::getContextData($request)->getId();
 		$settingsTMP = OpenIDPlugin::getOpenIDSettings($this, $contextId);
-	
-		foreach ($settingsTMP['provider'] as $key => $value) {
-			if(str_contains($key, $this::PROVIDER_CUSTOM)){
-				if (!self::$publicOpenidProviders->has($key)) {
-					self::$publicOpenidProviders->put(
-						$key , ["configUrl" => $value["configUrl"]]
-					);
+		if(isset($settingsTMP['provider'])){
+			foreach ($settingsTMP['provider'] as $key => $value) {
+				if(str_contains($key, $this::PROVIDER_CUSTOM)){
+					if (!self::$publicOpenidProviders->has($key)) {
+						self::$publicOpenidProviders->put(
+							$key , ["configUrl" => $value["configUrl"]]
+						);
+					}
 				}
 			}
 		}
+		
 	}
 
 	/**

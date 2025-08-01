@@ -89,7 +89,7 @@
 		{if $linkList}
 			<li class="margin-top-30"><strong>{translate key='plugins.generic.openid.select.provider.help'}</strong></li>
 			{foreach from=$linkList key=name item=url}
-				{if $name|strstr:'custom' !== false}
+				{if $name|strstr:'custom'}
 					<li><a id="openid-provider-{$name}" href="{$url}">
 							<div>
 								{if $customBtnImg[$name]}
@@ -101,7 +101,7 @@
 								{if $customBtnTxt[$name]}
 									{$customBtnTxt[$name]}
 								{else}
-									{{translate key="plugins.generic.openid.select.provider.login"}}{{$name|capitalize:true}}
+									{{translate key="plugins.generic.openid.select.provider.login"}}{{$name|replace:'custom':''|capitalize:true|trim} }
 								{/if}
 							</span>
 							</div>

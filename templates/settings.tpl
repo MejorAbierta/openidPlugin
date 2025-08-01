@@ -66,7 +66,6 @@
 		font-weight: 600 !important;
 	}
 </style>
-<button class="pkp_button" id="addButton">{translate key="plugins.generic.openid.select.provider.add"}</button>
 <form
 	class="pkp_form"
 	id="openIDSettings"
@@ -99,7 +98,7 @@
 								{$redirectUrl|escape}{$providerSuffix}
 							</strong>
 						</p>
-						{if $name|strstr:'custom' !== false}
+						{if $name|strstr:'custom'}
 							{fbvElement type="text" id="provider[{$name}][configUrl]" value=$provider[{$name}]['configUrl']|default:$settings['configUrl'] maxlength="250" label="plugins.generic.openid.settings.configUrl.desc"}
 							<div style="clear: both;">&nbsp;</div>
 							<div>
@@ -126,6 +125,8 @@
 			</div>
 		{/foreach}
 	{/fbvFormArea}
+	<div class="pkp_button" id="addButton">{translate key="plugins.generic.openid.select.provider.add"}</div>
+	<div style="clear: both;">&nbsp;</div>
 	{fbvFormArea title="plugins.generic.openid.settings.features.head" id="open-id-features"}
 		<p>{translate key="plugins.generic.openid.settings.features.desc"}</p>
 		{fbvFormSection list=true}
@@ -163,14 +164,27 @@
 	{/fbvFormArea}
 	{fbvFormButtons}
 
-	<dialog 
+	<dialog
 	class="pkp_modal_panel"
 	id="addCustomDialog">
-		<section>
+		
+		<div style="position: absolute;right: 0; margin-right: 13px;" id="closeButton" class="pkp_button"><span :aria-hidden="true">×</span><span class="pkp_screen_reader">Close Panel</span></div>
+		
+		<legend>{translate key="plugins.generic.openid.select.provider.add"}</legend>
+		
+		<section >
 		<p>
-			<label class="label">{translate key="plugins.generic.openid.select.provider.add"}</label>
 			<div>
-			{fbvElement type="text" id="newProviderName" value="" maxlength="250" label="plugins.generic.openid.settings.name"}
+			{fbvElement type="text" id="newProviderName" value="" maxlength="250" label="plugins.generic.openid.settings.name" onkeypress="
+				this.value = this.value.toLowerCase();
+				var regex = new RegExp('^[a-zA-Z0-9]+$');
+				var str = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+				if (!regex.test(str)) {
+					event.preventDefault();
+					return false;
+				}
+				return true;
+			"}
 			<div style="clear: both;">&nbsp;</div>
 			{fbvElement type="text" id="newProviderConfigUrl" value="" maxlength="250" label="plugins.generic.openid.settings.configUrl.desc"}
 			<div style="clear: both;">&nbsp;</div>
@@ -187,16 +201,22 @@
 		</p>
 		</section>
 
-		{fbvFormButtons}
+		{fbvFormButtons hideCancel=true}
 	</dialog>
 </form>
 <script>
 	(function () {
 		var addButton = document.getElementById("addButton");
+		var closeButton = document.getElementById("closeButton");
 		var addCustomDialog = document.getElementById("addCustomDialog");
 
 		addButton.addEventListener("click", function () {
 			addCustomDialog.showModal();
+		});
+
+		closeButton.addEventListener("click", function () {
+			addCustomDialog.close();
+			document.querySelector(`input[name="newProviderName"]`).value = '';
 		});
 	})();
 </script>
