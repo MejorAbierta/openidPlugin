@@ -59,8 +59,24 @@ class OpenIDPlugin extends GenericPlugin
 			self::PROVIDER_MICROSOFT => ["configUrl" => "https://login.windows.net/{audience}/v2.0/.well-known/openid-configuration"],
 			self::PROVIDER_APPLE => ["configUrl" => "https://appleid.apple.com/.well-known/openid-configuration"],
 		]);
+		$this->addToPublicOpenidProviders();
 	}
-
+	function addToPublicOpenidProviders(){
+		$request = Application::get()->getRequest();
+		$contextId = OpenIDPlugin::getContextData($request)->getId();
+		$settingsTMP = OpenIDPlugin::getOpenIDSettings($this, $contextId);
+		if(isset($settingsTMP['provider'])){
+			foreach ($settingsTMP['provider'] as $key => $value) {
+				if(str_contains($key, $this::PROVIDER_CUSTOM)){
+					if (!self::$publicOpenidProviders->has($key)) {
+						self::$publicOpenidProviders->put(
+							$key , ["configUrl" => $value["configUrl"]]
+						);
+					}
+				}
+			}
+		}
+	}
 	/**
 	 * Replace the given provider's {$setting} placeholder in the configUrl with the provided value.
 	 */

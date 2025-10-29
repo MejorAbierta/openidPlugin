@@ -105,6 +105,12 @@ class OpenIDPluginSettingsForm extends Form
 				'generateAPIKey',
 				'providerSync',
 				'disableFields',
+				'newProviderName',
+				'newProviderConfigUrl',
+				'newProviderBtnImg',
+				'newProviderBtnTxt',
+				'newProviderClientId',
+				'newProviderClientSecret',
 			]
 		);
 		parent::readInputData();
@@ -138,6 +144,25 @@ class OpenIDPluginSettingsForm extends Form
 			$settingsTMP = OpenIDPlugin::getOpenIDSettings($this->plugin, $contextId);
 
 			$providerList = $this->getData('provider');
+			if ($this->getData('newProviderName')) {
+				if ($this->getData('newProviderName') == "" || $this->getData('newProviderConfigUrl') == "") {
+					return;
+				}
+
+				$newProviderName = "custom" . $this->getData('newProviderName');
+
+				$newProvider = [];
+				$newProvider["active"] = "1";
+				$newProvider["configUrl"] = $this->getData('newProviderConfigUrl');
+				$newProvider["btnImg"] = $this->getData('newProviderBtnImg');
+				$newProvider["btnTxt"] = $this->getData('newProviderBtnTxt');
+				$newProvider["clientId"] = $this->getData('newProviderClientId');
+				$newProvider["clientSecret"] = $this->getData('newProviderClientSecret');
+
+				if (!isset($providerList[$newProviderName])) {
+					$providerList[$newProviderName] = $newProvider;
+				}
+			}
 			$providerListResult = $this->_createProviderList($providerList, $settingsTMP['provider']);
 
 			$settings = [

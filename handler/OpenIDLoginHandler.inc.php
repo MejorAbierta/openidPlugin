@@ -15,10 +15,14 @@
 
 import('classes.handler.Handler');
 import('plugins.generic.openid.classes.ContextData');
+use Illuminate\Support\Collection;
 
 class OpenIDLoginHandler extends Handler
 {
 	protected OpenIDPlugin $plugin;
+	
+	public static Collection $customBtnImg;
+	public static Collection $customBtnTxt;
 
 	public function __construct()
 	{
@@ -346,6 +350,9 @@ class OpenIDLoginHandler extends Handler
 		$router = $request->getRouter();
 		$linkList = [];
 
+		self::$customBtnImg = collect([]);
+		self::$customBtnTxt = collect([]);
+
 		foreach ($providerList as $provider => $settings) {
 			if (!empty($settings['authUrl']) && !empty($settings['clientId'])) {
 				$redirectUri = $router->url($request, null, 'openid', 'doAuthentication', null, ['provider' => $provider]);
@@ -359,17 +366,24 @@ class OpenIDLoginHandler extends Handler
 				$this->handleCustomProvider($provider, $settings, TemplateManager::getManager($request));
 			}
 		}
+
+		if(self::$customBtnTxt->isNotEmpty()){
+			TemplateManager::getManager($request)->assign([
+				'customBtnImg' => self::$customBtnImg,
+				'customBtnTxt' => self::$customBtnTxt
+			]);
+		}
+
 		return $linkList;
 	}
 
 	private function handleCustomProvider(string $provider, array $settings, TemplateManager $templateMgr): void
 	{
-		if ($provider == OpenIDPlugin::PROVIDER_CUSTOM) {
+		if(str_contains($provider, OpenIDPlugin::PROVIDER_CUSTOM)){
 			$customBtnTxt = htmlspecialchars($settings['btnTxt'][AppLocale::getLocale()] ?? '', ENT_QUOTES, 'UTF-8');
-			$templateMgr->assign([
-				'customBtnImg' => $settings['btnImg'] ?? null,
-				'customBtnTxt' => $customBtnTxt
-			]);
+
+			self::$customBtnImg->put($provider,$settings['btnImg'] ?? null);
+			self::$customBtnTxt->put($provider,$customBtnTxt);
 		}
 	}
 
