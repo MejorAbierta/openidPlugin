@@ -251,7 +251,7 @@ msgid "plugins.generic.openid.select.provider"
 msgstr "Iniciar sesión o registrarse"
 
 msgid "plugins.generic.openid.select.legacy"
-msgstr "Iniciar sesión con su cuenta en {$journalName}"
+msgstr "Registro normal"
 
 msgid "plugins.generic.openid.select.provider.help"
 msgstr "Iniciar sesión o registrarse con:"
@@ -295,3 +295,17 @@ msgstr "Iniciar sesión con "
 
 msgid "plugins.generic.openid.select.provider.add"
 msgstr "Añadir nuevo proveedor personalizado"
+
+msgid "plugins.generic.openid.step2.headline.siteNameMissing"
+msgstr "¿Ya tienes una cuenta?"
+
+msgid "plugins.generic.openid.step2.choice.no.siteNameMissing"
+msgstr "No, soy nuevo/a."
+
+msgid "plugins.generic.openid.step2.connect.siteNameMissing"
+msgstr ""
+"Por favor, accede a tu cuenta.<br />Tu información se "
+"actualizará automáticamente."
+
+msgid "plugins.generic.openid.step2.help.siteNameMissing"
+msgstr "Se requiere información adicional para registrarse:"

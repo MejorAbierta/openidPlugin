@@ -111,7 +111,11 @@
 					<li class=""><a id="openid-provider-{$name}" href="{$url}">
 							<div>
 								<img src="{$openIDImageURL}{$name}-sign-in.png" alt="{$name}"/>
-								<span>{{translate key="plugins.generic.openid.select.provider.login"}}{{$name|capitalize:true}}</span>
+								{if $name=="legacyRegister"}
+									<span>{{translate key="plugins.generic.openid.select.legacy" journalName=$siteTitle|escape}}</span>
+								{else}
+									<span>{{translate key="plugins.generic.openid.select.provider.login"}}{{$name|capitalize:true}}</span>
+								{/if}
 							</div>
 						</a>
 					</li>
