@@ -250,8 +250,11 @@ msgstr ""Los administradores y el personal de soporte pueden iniciar sesión a t
 msgid "plugins.generic.openid.select.provider"
 msgstr "Iniciar sesión o registrarse"
 
+msgid "plugins.generic.openid.select.legacy.signin"
+msgstr "Iniciar sesión"
+
 msgid "plugins.generic.openid.select.legacy"
-msgstr "Registro normal"
+msgstr "Registro clásico"
 
 msgid "plugins.generic.openid.select.provider.help"
 msgstr "Iniciar sesión o registrarse con:"
@@ -260,7 +263,7 @@ msgid "plugins.generic.openid.select.provider.custom"
 msgstr "Iniciar sesión con proveedor personalizado"
 
 msgid "plugins.generic.openid.select.provider.orcid"
-msgstr "Iniciar sesión con Orcid"
+msgstr "Iniciar sesión con ORCID"
 
 msgid "plugins.generic.openid.select.provider.google"
 msgstr "Iniciar sesión con Google"

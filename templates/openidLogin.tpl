@@ -35,7 +35,7 @@
 	{/if}
 	<ul id="openid-provider-list">
 		{if $legacyLogin}
-			<li class="margin-top-30"><strong>{translate key='plugins.generic.openid.select.legacy' journalName=$siteTitle|escape}</strong></li>
+			<li class="margin-top-30"><strong>{translate key='plugins.generic.openid.select.legacy.signin' journalName=$siteTitle|escape}</strong></li>
 			<li class="page_login">
 				<form class="cmp_form cmp_form login" id="login" method="post" action="{$loginUrl}">
 					{csrf}
@@ -113,6 +113,8 @@
 								<img src="{$openIDImageURL}{$name}-sign-in.png" alt="{$name}"/>
 								{if $name=="legacyRegister"}
 									<span>{{translate key="plugins.generic.openid.select.legacy" journalName=$siteTitle|escape}}</span>
+								{elseif $name=="orcid"}
+									<span>{{translate key="plugins.generic.openid.select.provider.orcid"}}</span>
 								{else}
 									<span>{{translate key="plugins.generic.openid.select.provider.login"}}{{$name|capitalize:true}}</span>
 								{/if}
